@@ -92,7 +92,6 @@ def load_to_SQLite(tabs):
                     recs.append(tuple(data))
             add_records(cur, colnames, recs, tabs[f])
 
-
 def add_records(cursor, cols, records, tabname):
     drop_state = "DROP TABLE IF EXISTS %s" % tabname
     tabpart = [cols[x] + " TXT" for x in range(len(cols))]
@@ -103,6 +102,9 @@ def add_records(cursor, cols, records, tabname):
     cursor.execute(drop_state)
     cursor.execute(make_table)
     cursor.executemany(insert_val, records)
+
+def compress_TABs():
+    pass
     
 if __name__ == '__main__':
     if len(sys.argv) != 4:
